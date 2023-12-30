@@ -1,7 +1,4 @@
-ifdef CROSS_COMPILE
-	PREFIX := aarch64-none-linux-gnu-
-endif
-CC := $(PREFIX)gcc
+CC := $(CROSS_COMPILE)gcc
 
 all: writer
 	
