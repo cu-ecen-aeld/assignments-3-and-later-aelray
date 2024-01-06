@@ -1,12 +1,29 @@
 CC := $(CROSS_COMPILE)gcc
 
-all: writer
-	
-writer.o:
-	$(CC) -c writer.c -o writer.o
+NAME        := writer
 
-writer: writer.o
-	$(CC) writer.o -o writer
+SRCS        := $(NAME).c
+OBJS        := $(NAME).o
+
+CC          := $(CROSS_COMPILE)gcc
+CFLAGS      := -Wall -Wextra -Werror
+
+RM          := rm -f
+MAKEFLAGS   += --no-print-directory
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) -o $(NAME) $(LDFLAGS)
 
 clean:
-	rm -f *.o writer
+	$(RM) $(OBJS)
+
+fclean: clean
+	$(RM) $(NAME)
+
+re:
+	$(MAKE) fclean
+	$(MAKE) all
+
+.PHONY: clean fclean re
