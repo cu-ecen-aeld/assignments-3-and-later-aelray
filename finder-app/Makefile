@@ -1,12 +1,8 @@
-CC := $(CROSS_COMPILE)gcc
-
 NAME        := writer
 
 SRCS        := $(NAME).c
 OBJS        := $(NAME).o
 
-CC          := $(CROSS_COMPILE)gcc
-CFLAGS      := -Wall -Wextra -Werror
 
 RM          := rm -f
 MAKEFLAGS   += --no-print-directory
@@ -14,16 +10,16 @@ MAKEFLAGS   += --no-print-directory
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) -o $(NAME) $(LDFLAGS)
+	$(CC) $(CCFLAGS) $(LDFLAGS) $(INCLUDES) $(OBJS) -o $(NAME)
+
+%.o : %.c
+	$(CC) -c $(CFLAGS) $< -o $@
 
 clean:
-	$(RM) $(OBJS)
-
-fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(OBJS) $(NAME)
 
 re:
 	$(MAKE) fclean
 	$(MAKE) all
 
-.PHONY: clean fclean re
+.PHONY: clean re
