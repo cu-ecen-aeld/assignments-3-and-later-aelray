@@ -11,6 +11,7 @@
 #include <sys/syslog.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
 #include <syslog.h>
 #include <unistd.h>
 
